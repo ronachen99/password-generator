@@ -55,8 +55,10 @@ function writePassword() {
     selectedCriteria.concat(specialCharacters);
   }
 
-  // Make the selectedCriteria random
-  var randomSelectedCriteria = selectedCriteria[Math.floor(Math.random() * selectedCriteria.length)]
+  // Make the selectedCriteria random, the randomization would continue to select a random character from the selectedCriteria array up until the desired passwordLength
+  for (var x = 0; x < passwordLength; x++); {
+    var randomSelectedCriteria = selectedCriteria[Math.floor(Math.random() * selectedCriteria.length)];
+  }
   
   
     
