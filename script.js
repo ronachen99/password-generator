@@ -36,7 +36,7 @@ function writePassword() {
     var passwordLength = window.prompt("The password must be at least 8 characters and no more than 128 characters. Please enter your desired password length (i.e., 8-128).");
   }
 
-  // Need to add the selected criteria array(s) together using .concat method, and overwrites everytime if the criteria is 
+  // Need to add the selected criteria array(s) together using .concat method, and overwrites everytime if the criteria is true
   var selectedCriteria = []
 
   if (uppercaseTrue) {
@@ -45,9 +45,9 @@ function writePassword() {
     selectedCriteria.concat(lowercase);
   } else if (numbersTrue) {
     selectedCriteria.concat(numbers);
-  } else (specialCharactersTrue) 
+  } else if (specialCharactersTrue) {
     selectedCriteria.concat(specialCharacters);
-
+  }
 
   var password = generatePassword();
   var passwordText = document.querySelector("#password");
