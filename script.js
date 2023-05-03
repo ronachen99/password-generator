@@ -9,6 +9,16 @@ var specialCharacters = ['!', '"', '#', '$', '%', '&', "'", '(', ')', '*', '+', 
 
 // Write password to the #password input
 function writePassword() {
+
+  // Prompts that allow users to click "ok" for yes or "cancel" for no
+  var uppercase = window.confirm("Do you want uppercase letters (i.e., ABC) in your password?");
+  var lowercase = window.confirm("Do you want lowercase letters (i.e., abc) in your password?");
+  var numbers = window.confirm("Do you want numbers (i.e., 123) in your password?");
+  var specialCharacters = window.confirm("Do you want special characters (i.e., !@#$%^) in you password?");
+  var passwordLength = window.prompt("Enter your desired password length with at least 8 characters and no more than 128 characters.")
+
+  console.log(passwordLength);
+
   var password = generatePassword();
   var passwordText = document.querySelector("#password");
 
