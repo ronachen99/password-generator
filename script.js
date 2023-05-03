@@ -41,14 +41,25 @@ function writePassword() {
 
   if (uppercaseTrue) {
     selectedCriteria.concat(uppercase);
-  } else if (lowercaseTrue) {
+  } 
+  
+  if (lowercaseTrue) {
     selectedCriteria.concat(lowercase);
-  } else if (numbersTrue) {
+  } 
+  
+  if (numbersTrue) {
     selectedCriteria.concat(numbers);
-  } else if (specialCharactersTrue) {
+  } 
+  
+  if (specialCharactersTrue) {
     selectedCriteria.concat(specialCharacters);
   }
 
+  // Make the selectedCriteria random
+  var randomSelectedCriteria = selectedCriteria[Math.floor(Math.random() * selectedCriteria.length)]
+  
+  
+    
   var password = generatePassword();
   var passwordText = document.querySelector("#password");
 
