@@ -57,7 +57,7 @@ function getCharacters() {
     return selectedCharacters
   }
   // If none was selected, an error would pop up and if user selects "ok" for the alert function (i.e., true) then it will redirect them back to the getCharacter function 
-  alert("you must select at least one character type")
+  alert("You must select at least one character type")
   if (tryAgain()) {
     return getCharacters()
   }
