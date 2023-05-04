@@ -9,6 +9,22 @@ function tryAgain() {
   return confirm("Would you like to try again?")
 }
 
+// Get the desired length of the function
+function getLength() {
+  // Sets max and min length values
+  var min = 8;
+  var max = 128;
+  var passwordCount = prompt("The password must be at least 8 characters and no more than 128 characters. Please enter your desired password length (i.e., 8-128).");
+  if (passwordCount >= min && passwordCount <= max) {
+    return passwordCount
+  }
+  // If the user entered an invalid value, an error would pop up and directs them to the tryAgain function, and if true, the getLength function would execute
+  alert("You must enter an integer value!")
+  if (tryAgain()) {
+    return getLength()
+  }
+}
+
 // Get possible characters based from the criteria that the end user chooses
 function getCharacters() {
   // The arrays for uppercase, lowercase, numbers, and special characters
@@ -46,23 +62,6 @@ function getCharacters() {
     return getCharacters()
   }
 }
-
-// Get the desired length of the function
-function getLength() {
-  // Sets max and min length values
-  var min = 8;
-  var max = 128;
-  var passwordCount = prompt("The password must be at least 8 characters and no more than 128 characters. Please enter your desired password length (i.e., 8-128).");
-  if (passwordCount >= min && passwordCount <= max) {
-    return passwordCount
-  }
-  // If the user entered an invalid value, an error would pop up and directs them to the tryAgain function, and if true, the getLength function would execute
-  alert("You must enter an integer value!")
-  if (tryAgain()) {
-    return getLength()
-  }
-}
-
 
 // Writes the function for generatePassword
 function generatePassword() {
