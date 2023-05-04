@@ -32,11 +32,11 @@ function generatePassword() {
   }
 
   // Prompt users to input a desired password length
-  var passwordLength = prompt("The password must be at least 8 characters and no more than 128 characters. Please enter your desired password length (i.e., 8-128).");
+  var passwordCount = prompt("The password must be at least 8 characters and no more than 128 characters. Please enter your desired password length (i.e., 8-128).");
   // If the user enters an invalid number, it will prompt the user to enter a valid number, if not the function will terminate after two inputs of invalid numbers
-  if (passwordLength < min || passwordLength > max) {
+  if (passwordCount < min || passwordCount > max) {
     prompt("Please enter a valid password length!\nEnter a number from 8 to 128:");
-  } else if (isNaN(passwordLength)) {
+  } else if (isNaN(passwordCount)) {
     prompt("Please enter a valid password length!\nEnter a number from 8 to 128:");
     return "You need to enter a valid password length. Please try again!";
   }
@@ -61,9 +61,10 @@ function generatePassword() {
   randomIndex = Math.floor(Math.random() * selectedCharacters.length);
   randomCharacters = selectedCharacters[randomIndex];
 
+
   return randomCharacters;
 }
-//   // Randomization would continue to select a random character from the selected characters until the desired passwordLength
+//   // Randomization would continue to select a random character from the selected characters until the desired passwordCount
 //   for (var x = 0; x < passwordLength; x++); {
 //     y = selectedCharacters[Math.floor(Math.random() * selectedCharacters.length)];
 //   }
