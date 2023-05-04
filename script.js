@@ -2,7 +2,7 @@
 var generateBtn = document.querySelector("#generate");
 
 // Directs the end user to click on the generate button
-window.alert("Click on the red button to generate your password!");
+// window.alert("Click on the red button to generate your password!");
 
 // The arrays for uppercase, lowercase, numbers, special characters, and selected characters  that were chosen by the end user
 var uppercase = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z'];
@@ -20,7 +20,6 @@ var password = ""
 
 // Writes the function for generatePassword
 function generatePassword() {
-
   // Prompt users to choose what characters to include in their password
   var uppercaseTrue = confirm("Do you want uppercase letters (i.e., ABC) in your password?");
   var lowercaseTrue = confirm("Do you want lowercase letters (i.e., abc) in your password?");
@@ -37,49 +36,72 @@ function generatePassword() {
   if (passwordCount < min || passwordCount > max) {
     prompt("Please enter a valid password length!\nEnter a number from 8 to 128:");
   } else if (isNaN(passwordCount)) {
+    console.log("it's not a number")
     prompt("Please enter a valid password length!\nEnter a number from 8 to 128:");
-    return "You need to enter a valid password length. Please try again!";
+    return "You must enter a valid password length. Please try again!";
   }
 
   // Need to add the selected criteria arrays together using .concat method, which overwrites everytime when the criteria is true
   if (uppercaseTrue) {
     selectedCharacters = selectedCharacters.concat(uppercase);
   }
+  console.log(selectedCharacters)
 
   if (lowercaseTrue) {
     selectedCharacters = selectedCharacters.concat(lowercase);
   }
+  console.log(selectedCharacters)
 
   if (numbersTrue) {
     selectedCharacters = selectedCharacters.concat(numbers);
   }
+  console.log(selectedCharacters)
 
   if (specialCharactersTrue) {
     selectedCharacters = selectedCharacters.concat(specialCharacters);
   }
-
-  randomIndex = Math.floor(Math.random() * selectedCharacters.length);
-  randomCharacters = selectedCharacters[randomIndex];
+  console.log(selectedCharacters)
 
 
-  return randomCharacters;
+
+
+
+
+
+
+
+
+  // Randomization would continue to select a random character from the selected characters until the desired passwordCount
+  for(var i=0; i< passwordCount; i++){
+    randomCharacters = selectedCharacters[Math.floor(Math.random() * selectedCharacters.length)];
+    console.log(randomCharacters)
+    password = randomCharacters.concat(password);
+    console.log(password)
+  }
+
+  return password;
 }
-//   // Randomization would continue to select a random character from the selected characters until the desired passwordCount
-//   for (var x = 0; x < passwordLength; x++); {
-//     y = selectedCharacters[Math.floor(Math.random() * selectedCharacters.length)];
-//   }
 
-//   // Need to add the previously defined value of password to the created randomized string of password
-//   var password = password.join(y);
 
-//   return password;
-// }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 // Write password to the #password input
 function writePassword() {
   var password = generatePassword();
   var passwordText = document.querySelector("#password");
-
   passwordText.value = password;
 }
 
