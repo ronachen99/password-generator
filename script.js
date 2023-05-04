@@ -58,6 +58,11 @@ function generatePassword() {
     selectedCharacters = selectedCharacters.concat(specialCharacters);
   }
 
+  randomIndex = Math.floor(Math.random() * selectedCharacters.length);
+  randomCharacters = selectedCharacters[randomIndex];
+
+  return randomCharacters;
+}
 //   // Randomization would continue to select a random character from the selected characters until the desired passwordLength
 //   for (var x = 0; x < passwordLength; x++); {
 //     y = selectedCharacters[Math.floor(Math.random() * selectedCharacters.length)];
