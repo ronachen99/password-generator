@@ -4,18 +4,23 @@ var generateBtn = document.querySelector("#generate");
 // Directs the end user to click on the generate button
 window.alert("Click on the red button to generate your password!");
 
+// Sends an alert message if the user selects zero criteria or enters an invalid password length
 function tryAgain() {
   return confirm("Would you like to try again?")
 }
 
+// Get possible characters based from the criteria that the end user chooses
 function getCharacters() {
-  // The arrays for uppercase, lowercase, numbers, special characters, and selected characters  that were chosen by the end user
+  // The arrays for uppercase, lowercase, numbers, and special characters
   var uppercase = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z'];
   var lowercase = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z'];
   var numbers = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9'];
   var specialCharacters = ['!', '"', '#', '$', '%', '&', "'", '(', ')', '*', '+', ',', '-', '.', '/', ':', ';', '<', '=', '>', '?', '@', '[', '\\', ']', '^', '_', '`', '{', '|', '}', '~'];
+  // Blank array that will eventually increase with user selection
   var selectedCharacters = [];
+  // Prompts user to select their criteria with "ok" for yes or "cancel" for no
   var uppercaseTrue = confirm("Do you want uppercase letters (i.e., ABC) in your password?");
+  // Need to add the selected criteria arrays together using .concat method, which overwrites everytime when the criteria is true
   if (uppercaseTrue) {
     selectedCharacters = selectedCharacters.concat(uppercase);
   }
@@ -31,27 +36,28 @@ function getCharacters() {
   if (specialCharactersTrue) {
     selectedCharacters = selectedCharacters.concat(specialCharacters);
   }
-  // If the user selects "cancel" for all prompts, the function will terminate
-  // Need to add the selected criteria arrays together using .concat method, which overwrites everytime when the criteria is true
-
+  // This returns the selectedCharacter array and gets out of the getCharacter function 
   if (selectedCharacters.length > 0) {
     return selectedCharacters
   }
+  // If none was selected, an error would pop up and if user selects "ok" for the alert function (i.e., true) then it will redirect them back to the getCharacter function 
   alert("you must select at least one character type")
   if (tryAgain()) {
     return getCharacters()
   }
 }
 
+// Get the desired length of the function
 function getLength() {
-  // Set max and min length values
+  // Sets max and min length values
   var min = 8;
   var max = 128;
   var passwordCount = prompt("The password must be at least 8 characters and no more than 128 characters. Please enter your desired password length (i.e., 8-128).");
   if (passwordCount >= min && passwordCount <= max) {
     return passwordCount
   }
-  alert("you must enter an integer value!")
+  // If the user entered an invalid value, an error would pop up and directs them to the tryAgain function, and if true, the getLength function would execute
+  alert("You must enter an integer value!")
   if (tryAgain()) {
     return getLength()
   }
@@ -60,18 +66,21 @@ function getLength() {
 
 // Writes the function for generatePassword
 function generatePassword() {
+  // Defines password length equal to the result from the getLength function
   var passwordLength = getLength()
+  // If the user decides to enter an invalid value which returns undefined, it will terminate the function
   if (passwordLength === undefined) {
-    return "You must enter an integer between 8 and 128 for the program to work"
+    return "You must enter an integer between 8 and 128!"
   }
-  // Prompt users to choose what characters to include in their password
+  // Defines available characters equal to the result from the getCharacters function
   var passwordBase = getCharacters()
+  // If the user decides to select none of the criteria, it will return undefined and terminate the function
   if (passwordBase === undefined) {
-    return "You must select at least one character type"
+    return "You must select at least one character type!"
   }
-  // Sets a password variable with no values
+  // Sets a password variable as string
   var password = ""
-  // Randomization would continue to select a random character from the selected characters until the desired passwordCount
+  // Randomization would continue to select a random character from the password base until the desired password length
   for (var i = 0; i < passwordLength; i++) {
     randomCharacters = passwordBase[Math.floor(Math.random() * passwordBase.length)];
     password = randomCharacters.concat(password);
