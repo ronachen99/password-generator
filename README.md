@@ -84,7 +84,7 @@ https://ronachen99.github.io/password-generator/
 
 ## Installation
 
-N/A
+There is no installation requirements.
 
 <br>
 
